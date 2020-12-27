@@ -1,0 +1,20 @@
+.square {
+    width: 10rem;
+    height: 10rem;
+    background: rgb(13, 26, 31);
+    border: 2px solid rgb(233, 119, 26);
+    cursor: pointer;
+    font-size: 3rem;
+    color: #fdfdfd;
+    outline: none;
+    margin: 0.5rem;
+
+    &:hover {
+        background: rgb(233, 119, 26);
+    }
+}
+
+h3 {
+    margin-left: 0.5rem;
+    color: #fdfdfd;
+}
