@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Board.scss';
 import Square from '../Square/Square';
 
-const Board = () => {
-    const [squaresContents, setSquaresContents] = useState(Array(9).fill('.')); 
-    const [currentState, setCurrentState] = useState(true);
-
-    function handleSquareOnClick(i) {
-        let newSquaresContents = squaresContents.slice();
-        newSquaresContents[i - 1] = currentState ? 'X' : 'O';
-        setCurrentState(!currentState);
-        setSquaresContents(newSquaresContents);
-    }
-
+const Board = ({historyBoards, onSquareClickHandler}) => {
     function renderSquare(i) {
         return ( 
             <Square 
-                value={squaresContents[i - 1]}
-                onClickHandler={() => handleSquareOnClick(i)}
+                value={historyBoards[i - 1]}
+                onClickHandler={() => onSquareClickHandler(i)}
             /> 
         )
     }
