@@ -2,11 +2,9 @@
 import React, { useState } from 'react';
 import './Square.scss';
 
-const Square = () => {
-    const [value, setValue] = useState('-');
-
+const Square = ({value, onClickHandler}) => {
     return (
-        <button className='square' onClick={() => setValue('X')}>
+        <button className='square' onClick={() => onClickHandler() }>
             {value}
         </button>
         
