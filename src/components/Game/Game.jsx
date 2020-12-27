@@ -4,15 +4,24 @@ import Board from '../Board/Board';
 import { getWinnerIfAny } from '../../helpers/tic-tac-toe';
 
 const Game = () => {
-    const [historyBoards, setSquaresContents] = useState(Array(9).fill('.')); 
+    const [historyBoards, setHistoryBoards] = useState([{
+        configuration: Array(9).fill('.')
+    }]); 
     const [currentState, setCurrentState] = useState(true);
 
     function handleSquareOnClick(i) {
         // Update board configuration 
-        let newSquaresContents = historyBoards.slice();
+        let newSquaresContents = historyBoards[historyBoards.length - 1].configuration.slice();
         newSquaresContents[i - 1] = currentState ? 'X' : 'O';
         setCurrentState(!currentState);
-        setSquaresContents(newSquaresContents);
+        setHistoryBoards((oldHistoryBoards) => [
+            ...oldHistoryBoards,
+            { 
+                configuration: newSquaresContents 
+            }
+        ]);
+
+        console.log(historyBoards);
 
         // Check for any potential winner
         let winner = getWinnerIfAny(newSquaresContents); 
@@ -24,10 +33,10 @@ const Game = () => {
     return (
         <div className='game'>
             <div>
-                <h3>Next player: { currentState === true ? 'X' : 'O'}</h3>
+                <h3>Next player: { currentState === true ? 'X' : 'O' }</h3>
                 <Board 
-                    historyBoards={historyBoards}
-                    onSquareClickHandler={(i) => handleSquareOnClick(i)} 
+                    historyBoards={ historyBoards[historyBoards.length - 1].configuration }
+                    onSquareClickHandler={ (i) => handleSquareOnClick(i) } 
                 />
             </div>
         </div>
