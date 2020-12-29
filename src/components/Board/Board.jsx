@@ -2,11 +2,11 @@ import React from 'react';
 import './Board.scss';
 import Square from '../Square/Square';
 
-const Board = ({historyBoards, onSquareClickHandler}) => {
+const Board = ({boardsHistory, onSquareClickHandler}) => {
     function renderSquare(i) {
         return ( 
             <Square 
-                value={historyBoards[i - 1]}
+                value={boardsHistory[i - 1]}
                 onClickHandler={() => onSquareClickHandler(i)}
             /> 
         )
